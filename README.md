@@ -23,21 +23,30 @@ The database needs secrets to protect unwanted access from external applications
 is essential to create default username and password to access and use the database itself.
 To archive this you need to create the credentials by typing this command to create username:
 ```shell
-echo -n 'smart_igloo_db_usr' > ./db_username
 echo -n '<insert your password here>' > ./db_password
 ```
 
 Then is possible to store secrets in kubernetes cluster referencing the right namespace:
 ```shell
 kubectl create secret generic igloo-db-storage-secrets -n smart-igloo-hub \
-  --from-file=./db_username \
   --from-file=./db_password
 ```
 
 You can optionally remove previously created files:
 ```shell
-rm -v ./db_username ./db_password
+rm -v ./db_password
 ```
+
+Now is time to prepare a folder where persist database's data files. This folder is used
+by kubernetes to persist database's date over deployments and upgrades. So in this way is possible
+upgrade, change or remove or scale database without loosing data stored in. 
+
+To archive this, identify a folder in your system where you can create (as normal user) a folder 
+and run the script *prepare_db_storage.py*:
+```shell
+python ./deployments/kuberenetes/prepare_db_storage.py
+```
+
 
 ## Running the application in dev mode
 
