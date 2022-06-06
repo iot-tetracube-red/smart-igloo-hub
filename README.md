@@ -4,48 +4,8 @@ Smart Igloo Hub is made in Quarkus and is written having scalability and high av
 These requirements are not requiring necessarily a powerful hardware, instead you can run the hub in 
 a kubernetes installation in a RaspberryPi 4 where are hosted also other services (see PiHole).
 
-## Kubernetes preparation
 
-If you want to develop or deploy production environment of the application server you need to prepare 
-the kubernetes configurations and secrets to store in the cluster itself.
 
-### Namespace creation
-
-The namespace is essential to isolate the services in the kubernetes cluster. For this reason
-in first instance you need to deploy the namespace launching:
-```shell
-kubectl apply -f deployments/kubernetes/smart-igloo-hub-namespace.yaml
-```
-
-### Database deployment
-
-The database needs secrets to protect unwanted access from external applications. For this reason
-is essential to create default username and password to access and use the database itself.
-To archive this you need to create the credentials by typing this command to create username:
-```shell
-echo -n '<insert your password here>' > ./db_password
-```
-
-Then is possible to store secrets in kubernetes cluster referencing the right namespace:
-```shell
-kubectl create secret generic igloo-db-storage-secrets -n smart-igloo-hub \
-  --from-file=./db_password
-```
-
-You can optionally remove previously created files:
-```shell
-rm -v ./db_password
-```
-
-Now is time to prepare a folder where persist database's data files. This folder is used
-by kubernetes to persist database's date over deployments and upgrades. So in this way is possible
-upgrade, change or remove or scale database without loosing data stored in. 
-
-To archive this, identify a folder in your system where you can create (as normal user) a folder 
-and run the script *prepare_db_storage.py*:
-```shell
-python ./deployments/kuberenetes/prepare_db_storage.py
-```
 
 
 ## Running the application in dev mode
