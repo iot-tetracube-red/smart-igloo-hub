@@ -8,14 +8,14 @@ import red.tetracube.iot.smartigloohub.properties.SmartIglooProperties
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
-class MQTTClient {
+class MessagingClient {
 
     companion object {
-        private val LOGGER: Logger = LoggerFactory.getLogger(MQTTClient::class.java)
+        private val LOGGER: Logger = LoggerFactory.getLogger(MessagingClient::class.java)
     }
 
     @Singleton
-    fun mqttClient(smartIglooProperties: SmartIglooProperties): Mqtt3AsyncClient {
+    fun messagingClient(smartIglooProperties: SmartIglooProperties): Mqtt3AsyncClient {
         LOGGER.info("Creating mqtt client")
         return MqttClient.builder()
             .identifier(smartIglooProperties.iot().clientId())
