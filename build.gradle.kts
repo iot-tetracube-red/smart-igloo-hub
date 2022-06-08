@@ -13,9 +13,11 @@ val quarkusPlatformGroupId: String by project
 val quarkusPlatformArtifactId: String by project
 val quarkusPlatformVersion: String by project
 val mqttClient: String = "1.3.0"
+val springVersion = "5.6.3"
 
 dependencies {
     implementation("com.hivemq:hivemq-mqtt-client:${mqttClient}")
+    implementation("org.springframework.security:spring-security-crypto:${springVersion}")
     implementation(enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}"))
     implementation("io.quarkus:quarkus-resteasy-reactive-jackson")
     implementation("io.quarkus:quarkus-mutiny")
