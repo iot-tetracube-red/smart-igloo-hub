@@ -1,4 +1,4 @@
-package red.tetracube.iot.smartigloohub.mqtt
+package red.tetracube.iot.smartigloohub.messagingbroker
 
 import com.hivemq.client.mqtt.MqttClient
 import com.hivemq.client.mqtt.mqtt3.Mqtt3AsyncClient

@@ -1,4 +1,4 @@
-package red.tetracube.iot.smartigloohub.securitycomponent.payloads
+package red.tetracube.iot.smartigloohub.security.api.payloads
 
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty

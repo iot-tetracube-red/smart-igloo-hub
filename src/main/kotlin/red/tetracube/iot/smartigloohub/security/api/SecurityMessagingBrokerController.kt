@@ -1,10 +1,10 @@
-package red.tetracube.iot.smartigloohub.securitycomponent
+package red.tetracube.iot.smartigloohub.security.api
 
 import io.smallrye.mutiny.Uni
 import org.eclipse.microprofile.openapi.annotations.parameters.RequestBody
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
-import red.tetracube.iot.smartigloohub.securitycomponent.payloads.MessagingBrokerClientAuthenticationRequest
+import red.tetracube.iot.smartigloohub.security.api.payloads.MessagingBrokerClientAuthenticationRequest
 import javax.annotation.security.PermitAll
 import javax.validation.Valid
 import javax.ws.rs.Consumes

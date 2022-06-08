@@ -1,4 +1,4 @@
-package red.tetracube.iot.smartigloohub.securitycomponent
+package red.tetracube.iot.smartigloohub.security.api
 
 import io.smallrye.mutiny.Uni
 import org.slf4j.Logger
