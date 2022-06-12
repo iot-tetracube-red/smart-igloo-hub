@@ -5,9 +5,6 @@ These requirements are not requiring necessarily a powerful hardware, instead yo
 a kubernetes installation in a RaspberryPi 4 where are hosted also other services (see PiHole).
 
 
-
-
-
 ## Running the application in dev mode
 
 You can run your application in dev mode that enables live coding using:
