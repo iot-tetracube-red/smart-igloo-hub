@@ -76,10 +76,16 @@ public class MessagingBrokerService {
         );
         return trustedBrokerClientUni.map(brokerClient -> {
             if (brokerClient == null) {
-                return false;
+                LOGGER.warn("Cannot authenticate client, wrong credentials");
             } else {
-                return passwordEncoder.matches(password, brokerClient.getPassword());
+                var passwordMatches = passwordEncoder.matches(password, brokerClient.getPassword());
+                if (passwordMatches) {
+                    LOGGER.info("Client authenticated correctly");
+                    return true;
+                }
+                LOGGER.warn("Wrong credentials");
             }
+            return false;
         });
     }
 }

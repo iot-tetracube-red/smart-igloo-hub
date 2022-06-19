@@ -2,8 +2,12 @@ package red.tetracube.iot.smartigloohub.messagingbroker;
 
 import io.smallrye.mutiny.Uni;
 import org.eclipse.microprofile.openapi.annotations.parameters.RequestBody;
+import org.jboss.resteasy.reactive.MultipartForm;
+import org.jboss.resteasy.reactive.PartType;
+import org.jboss.resteasy.reactive.RestForm;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import red.tetracube.iot.smartigloohub.messagingbroker.payloads.AclRequestForm;
 import red.tetracube.iot.smartigloohub.messagingbroker.payloads.MessagingBrokerClientAuthenticationRequest;
 import red.tetracube.iot.smartigloohub.messagingbroker.payloads.MessagingBrokerEventRequest;
 
@@ -25,6 +29,18 @@ public class MessagingBrokerController {
     MessagingBrokerService messagingBrokerService;
 
     private final static Logger LOGGER = LoggerFactory.getLogger(MessagingBrokerController.class);
+
+    @POST
+    @PermitAll
+    @Path("/acl")
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Uni<Response> accessControlListApproval(@RestForm String access,
+                                                   @RestForm String username,
+                                                   @RestForm String clientId,
+                                                   @RestForm String topic) {
+        return Uni.createFrom().item(Response.ok().build());
+    }
 
     @POST
     @PermitAll
