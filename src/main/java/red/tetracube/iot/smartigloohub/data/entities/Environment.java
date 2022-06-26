@@ -15,10 +15,6 @@ public class Environment {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @JoinColumn(name = "house_id", nullable = false)
-    @ManyToOne(targetEntity = House.class, fetch = FetchType.LAZY)
-    private House house;
-
     @OneToMany(fetch = FetchType.LAZY, targetEntity = Switcher.class, mappedBy = "environment")
     private List<Switcher> environments = Collections.emptyList();
 

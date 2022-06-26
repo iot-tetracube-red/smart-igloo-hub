@@ -1,9 +1,10 @@
 package red.tetracube.iot.smartigloohub.data.entities;
 
-import java.util.Collections;
-import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.UUID;
-import javax.persistence.*;
 
 @Entity
 @Table(schema = "igloo_hub", name = "accounts")
@@ -17,8 +18,5 @@ public class Account {
 
     @Column(name = "password", nullable = false)
     private String password;
-
-    @OneToMany(fetch = FetchType.LAZY, targetEntity = HouseAccount.class, mappedBy = "account")
-    private List<HouseAccount> housesAccounts = Collections.emptyList();
 
 }

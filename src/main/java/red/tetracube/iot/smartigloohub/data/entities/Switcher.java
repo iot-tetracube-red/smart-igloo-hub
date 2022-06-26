@@ -27,17 +27,9 @@ public class Switcher {
     @Column(name = "is_online", nullable = false)
     private Boolean online;
 
-    @JoinColumn(name = "house_id", nullable = false)
-    @ManyToOne(fetch = FetchType.LAZY, targetEntity = House.class)
-    private House house;
-
     @JoinColumn(name = "environment_id", nullable = false)
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = Environment.class)
     private Environment environment;
-
-    @JoinColumn(name = "trusted_broker_client_id", nullable = false)
-    @ManyToOne(fetch = FetchType.LAZY, targetEntity = TrustedBrokerClient.class)
-    private TrustedBrokerClient trustedBrokerClient;
 
     @OneToMany(targetEntity = SwitcherAction.class, fetch = FetchType.LAZY, mappedBy = "switcher")
     private List<SwitcherAction> switcherActions = Collections.emptyList();
@@ -48,4 +40,5 @@ public class Switcher {
     public void setOnline(Boolean online) {
         this.online = online;
     }
+
 }

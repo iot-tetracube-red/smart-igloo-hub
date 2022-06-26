@@ -11,9 +11,6 @@ public class SwitcherAction {
     @Id
     private UUID id;
 
-    @Column(name = "display_name", nullable = false)
-    private String displayName;
-
     @Enumerated(value = EnumType.STRING)
     @Column(name = "logic_state", nullable = false)
     private LogicState logicState;

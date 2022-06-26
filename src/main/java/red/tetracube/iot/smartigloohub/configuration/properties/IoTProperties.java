@@ -5,6 +5,4 @@ public interface IoTProperties {
     String clientId();
     String host();
     Integer port();
-    String applicationPassword();
-
 }

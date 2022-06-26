@@ -65,9 +65,6 @@ public class MessagingBrokerService {
                                                  String username,
                                                  String password) {
         LOGGER.info("Checking if authentication is application service");
-        if (Objects.equals(password, smartIglooProperties.iot().applicationPassword())) {
-            return Uni.createFrom().item(true);
-        }
 
         LOGGER.info("Trying to authenticate feature with client id {} and username {}", clientId, username);
         var trustedBrokerClientUni = trustedBrokerClientRepository.getBrokerClientByClientIdAndUsername(

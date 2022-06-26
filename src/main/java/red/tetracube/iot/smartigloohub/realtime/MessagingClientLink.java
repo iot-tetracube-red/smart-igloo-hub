@@ -1,5 +1,6 @@
 package red.tetracube.iot.smartigloohub.realtime;
 
+import com.hivemq.client.mqtt.datatypes.MqttQos;
 import com.hivemq.client.mqtt.mqtt3.Mqtt3AsyncClient;
 import io.quarkus.vertx.ConsumeEvent;
 import io.vertx.mutiny.core.eventbus.EventBus;
@@ -9,7 +10,6 @@ import red.tetracube.iot.smartigloohub.configuration.properties.SmartIglooProper
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
-import java.nio.charset.StandardCharsets;
 
 @Singleton
 class MessagingClientLink {
@@ -30,7 +30,6 @@ class MessagingClientLink {
         messagingClient.connectWith()
                 .simpleAuth()
                 .username(smartIglooProperties.app().name())
-                .password(smartIglooProperties.iot().applicationPassword().getBytes(StandardCharsets.UTF_8))
                 .applySimpleAuth()
                 .send()
                 .whenComplete((mqttConnAck, exception) -> {
@@ -41,6 +40,20 @@ class MessagingClientLink {
                     }
                     LOGGER.info("Connection success: {}", mqttConnAck.getReturnCode().getCode());
                     eventBus.publish("mqtt-connected", true);
+                    listenLWTTopic();
+                });
+    }
+
+    public void listenLWTTopic() {
+        messagingClient.subscribeWith()
+                .topicFilter("tele/#")
+                .qos(MqttQos.AT_MOST_ONCE)
+                .callback(mqtt3Publish -> {
+                    LOGGER.info("Arrived LWT message on topic {} {}", mqtt3Publish.getTopic(), new String(mqtt3Publish.getPayloadAsBytes()));
+                })
+                .send()
+                .whenComplete((ack, ex) -> {
+                    LOGGER.info("listening for topic");
                 });
     }
 }
