@@ -37,8 +37,11 @@ public class Switcher {
     @OneToMany(targetEntity = SwitcherLog.class, fetch = FetchType.LAZY, mappedBy = "switcher")
     private List<SwitcherLog> switcherLogs = Collections.emptyList();
 
+    public UUID getId() {
+        return id;
+    }
+
     public void setOnline(Boolean online) {
         this.online = online;
     }
-
 }
