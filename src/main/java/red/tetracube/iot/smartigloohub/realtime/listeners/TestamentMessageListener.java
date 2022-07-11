@@ -1,28 +1,21 @@
 package red.tetracube.iot.smartigloohub.realtime.listeners;
 
-import com.hivemq.client.annotations.Immutable;
-import com.hivemq.client.mqtt.datatypes.MqttQos;
-import com.hivemq.client.mqtt.mqtt3.Mqtt3AsyncClient;
-import com.hivemq.client.mqtt.mqtt3.message.subscribe.Mqtt3Subscribe;
-import com.hivemq.client.mqtt.mqtt3.message.subscribe.Mqtt3SubscribeBuilder;
-import com.hivemq.client.mqtt.mqtt3.message.subscribe.Mqtt3Subscription;
-import io.quarkus.vertx.ConsumeEvent;
-import io.smallrye.context.SmallRyeThreadContext;
-import io.smallrye.mutiny.Uni;
-import io.vertx.mutiny.core.Vertx;
-import org.eclipse.microprofile.context.ThreadContext;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import red.tetracube.iot.smartigloohub.configuration.properties.SmartIglooProperties;
-import red.tetracube.iot.smartigloohub.data.entities.Switcher;
-import red.tetracube.iot.smartigloohub.data.enumerations.SwitcherLineStatus;
-import red.tetracube.iot.smartigloohub.data.repositories.SwitcherRepository;
+import java.util.Objects;
+import java.util.UUID;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
-import java.util.List;
-import java.util.Objects;
-import java.util.UUID;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.hivemq.client.mqtt.datatypes.MqttQos;
+import com.hivemq.client.mqtt.mqtt3.Mqtt3AsyncClient;
+
+import io.quarkus.vertx.ConsumeEvent;
+import red.tetracube.iot.smartigloohub.configuration.properties.SmartIglooProperties;
+import red.tetracube.iot.smartigloohub.data.enumerations.SwitcherLineStatus;
+import red.tetracube.iot.smartigloohub.data.repositories.SwitcherRepository;
 
 @Singleton
 public class TestamentMessageListener {
