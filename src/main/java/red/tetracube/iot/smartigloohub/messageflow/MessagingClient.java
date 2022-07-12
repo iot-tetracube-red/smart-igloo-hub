@@ -1,4 +1,4 @@
-package red.tetracube.iot.smartigloohub.realtime;
+package red.tetracube.iot.smartigloohub.messageflow;
 
 import com.hivemq.client.mqtt.MqttClient;
 import com.hivemq.client.mqtt.mqtt3.Mqtt3AsyncClient;
@@ -9,13 +9,13 @@ import red.tetracube.iot.smartigloohub.configuration.properties.SmartIglooProper
 import java.util.concurrent.TimeUnit;
 import javax.inject.Singleton;
 
-class MessagingClient {
+class MessageFlowClient {
 
-    private final static Logger LOGGER = LoggerFactory.getLogger(MessagingClient.class);
+    private final static Logger LOGGER = LoggerFactory.getLogger(MessageFlowClient.class);
 
     @Singleton
-    public Mqtt3AsyncClient messagingClient(SmartIglooProperties smartIglooProperties) {
-        LOGGER.info("Creating mqtt client");
+    public Mqtt3AsyncClient messageFlowClient(SmartIglooProperties smartIglooProperties) {
+        LOGGER.info("Creating MQTT client");
         return MqttClient.builder()
                 .identifier(smartIglooProperties.iot().clientId())
                 .serverHost(smartIglooProperties.iot().host())

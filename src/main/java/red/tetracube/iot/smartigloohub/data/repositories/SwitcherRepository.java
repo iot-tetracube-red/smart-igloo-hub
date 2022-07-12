@@ -15,27 +15,21 @@ public class SwitcherRepository {
     Mutiny.SessionFactory rxSessionFactory;
 
     public Uni<Switcher> getSwitcherById(UUID id) {
-        return this.rxSessionFactory.openSession()
-                .flatMap(session ->
-                session.createQuery("""
-                                            from Switcher switcher
-                                            where switcher.id = :id
-                                        """,
-                                Switcher.class
-                        )
-                        .setParameter("id", id)
-                        .setMaxResults(1)
-                        .getSingleResultOrNull()
-                        .eventually(session::close)
-        );
+        return this.rxSessionFactory.openSession().flatMap(session -> session.createQuery("""
+                    from Switcher switcher
+                    where switcher.id = :id
+                """,
+                Switcher.class)
+                .setParameter("id", id)
+                .setMaxResults(1)
+                .getSingleResultOrNull()
+                .eventually(session::close));
     }
 
     public Uni<Void> updateSwitcher(Switcher switcher) {
         return rxSessionFactory.openSession()
-                .flatMap(session ->
-                        session.merge(switcher)
-                                .chain(session::flush)
-                                .eventually(session::close)
-                );
+                .flatMap(session -> session.merge(switcher)
+                        .chain(session::flush)
+                        .eventually(session::close));
     }
 }
