@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import io.smallrye.common.constraint.NotNull;
 
 public class HubPairingRequest {
+    
     @NotNull
     @NotBlank
     @JsonProperty("username")

@@ -19,4 +19,7 @@ public class Account {
     @Column(name = "password", nullable = false)
     private String password;
 
+    public String getPassword() {
+        return password;
+    }
 }
