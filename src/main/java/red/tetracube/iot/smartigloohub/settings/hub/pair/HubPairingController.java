@@ -8,6 +8,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import io.smallrye.mutiny.Uni;
+import org.eclipse.microprofile.openapi.annotations.parameters.RequestBody;
 import red.tetracube.iot.smartigloohub.settings.hub.pair.payloads.HubPairingRequest;
 import red.tetracube.iot.smartigloohub.settings.hub.pair.payloads.HubPairingResponse;
 
@@ -21,7 +22,7 @@ public class HubPairingController {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/pair")
-    public Uni<HubPairingResponse> pairHub(@Valid HubPairingRequest request) {
+    public Uni<HubPairingResponse> pairHub(@RequestBody @Valid HubPairingRequest request) {
         return hubPairingLogic.pairHub(request);
     }
 }

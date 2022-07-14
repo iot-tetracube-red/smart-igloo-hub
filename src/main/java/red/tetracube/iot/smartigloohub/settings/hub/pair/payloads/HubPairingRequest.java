@@ -1,8 +1,9 @@
 package red.tetracube.iot.smartigloohub.settings.hub.pair.payloads;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.smallrye.common.constraint.NotNull;
 
 public class HubPairingRequest {
     
