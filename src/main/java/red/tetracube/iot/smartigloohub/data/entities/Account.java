@@ -1,9 +1,8 @@
 package red.tetracube.iot.smartigloohub.data.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import red.tetracube.iot.smartigloohub.enumerations.AccountHubRole;
+
+import javax.persistence.*;
 import java.util.UUID;
 
 @Entity
@@ -19,7 +18,19 @@ public class Account {
     @Column(name = "password", nullable = false)
     private String password;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "role", nullable = false)
+    private AccountHubRole role;
+
+    public String getUsername() {
+        return username;
+    }
+
     public String getPassword() {
         return password;
+    }
+
+    public AccountHubRole getRole() {
+        return role;
     }
 }

@@ -9,7 +9,7 @@ import red.tetracube.iot.smartigloohub.configuration.properties.SmartIglooProper
 import java.util.concurrent.TimeUnit;
 import javax.inject.Singleton;
 
-class MessageFlowClient {
+public class MessageFlowClient {
 
     private final static Logger LOGGER = LoggerFactory.getLogger(MessageFlowClient.class);
 

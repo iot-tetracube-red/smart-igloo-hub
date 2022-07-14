@@ -1,14 +1,14 @@
 package red.tetracube.iot.settings.hub.pair;
 
-import org.junit.jupiter.api.Test;
-import com.google.inject.Inject;
 import io.quarkus.test.junit.QuarkusTest;
-import red.tetracube.iot.smartigloohub.configuration.properties.SmartIglooProperties;
+import org.junit.jupiter.api.Test;
 import red.tetracube.iot.smartigloohub.settings.hub.pair.payloads.HubPairingRequest;
-import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.oneOf;
-import static org.hamcrest.Matchers.is;
+
 import javax.ws.rs.core.MediaType;
+
+import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.oneOf;
 
 @QuarkusTest
 public class HubPairingControllerTest {
@@ -40,5 +40,19 @@ public class HubPairingControllerTest {
                 .then();
         response.statusCode(200);
         response.body("hub_name", is("TestHub"));
+    }
+
+    @Test
+    public void shouldBeUnauthorized() {
+        var body = new HubPairingRequest();
+        body.setPassword("adsfasdf");
+        body.setUsername("tech_useafdr");
+        var response = given()
+                .body(body)
+                .contentType(MediaType.APPLICATION_JSON)
+                .when()
+                .post("/settings/hub/pair")
+                .then();
+        response.statusCode(401);
     }
 }

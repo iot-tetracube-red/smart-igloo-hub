@@ -1,21 +1,19 @@
 package red.tetracube.iot.smartigloohub.messageflow.listeners;
 
-import java.util.Objects;
-import java.util.UUID;
-
-import javax.inject.Inject;
-import javax.inject.Singleton;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.hivemq.client.mqtt.datatypes.MqttQos;
 import com.hivemq.client.mqtt.mqtt3.Mqtt3AsyncClient;
 import com.hivemq.client.mqtt.mqtt3.message.publish.Mqtt3Publish;
 import io.quarkus.vertx.ConsumeEvent;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import red.tetracube.iot.smartigloohub.configuration.properties.SmartIglooProperties;
 import red.tetracube.iot.smartigloohub.data.enumerations.SwitcherLineStatus;
 import red.tetracube.iot.smartigloohub.data.repositories.SwitcherRepository;
+
+import javax.inject.Inject;
+import javax.inject.Singleton;
+import java.util.Objects;
+import java.util.UUID;
 
 @Singleton
 public class TestamentMessageListener {
