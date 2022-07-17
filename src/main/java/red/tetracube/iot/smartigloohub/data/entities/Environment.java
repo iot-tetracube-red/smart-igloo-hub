@@ -16,6 +16,17 @@ public class Environment {
     private String name;
 
     @OneToMany(fetch = FetchType.LAZY, targetEntity = Switcher.class, mappedBy = "environment")
-    private List<Switcher> environments = Collections.emptyList();
+    private List<Switcher> switchers = Collections.emptyList();
 
+    public UUID getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public List<Switcher> getSwitchers() {
+        return switchers;
+    }
 }
